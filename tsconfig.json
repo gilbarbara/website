@@ -1,0 +1,18 @@
+{
+  "extends": "@gilbarbara/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "esnext", "webworker"],
+    "module": "ESNext",
+    "noEmit": true,
+    "paths": {
+      "*": ["src/*"],
+      "public/*": ["public/*"],
+      "test/*": ["test/*"]
+    }
+  },
+  "include": ["src/**/*", "node_modules/vite-plugin-pwa/client.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
