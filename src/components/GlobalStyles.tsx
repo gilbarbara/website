@@ -1,5 +1,6 @@
 import { css, Global } from '@emotion/react';
-import { theme } from "@gilbarbara/components";
+
+import { darkColor, theme } from 'modules/theme';
 
 export default function GlobalStyles() {
   return (
@@ -18,7 +19,7 @@ export default function GlobalStyles() {
         }
 
         body {
-          background-color: ${theme.black};
+          background-color: ${darkColor};
           color: ${theme.white};
           font-family: Rubik, sans-serif;
           font-size: ${theme.typography.regular.fontSize};
