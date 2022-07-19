@@ -1,39 +1,34 @@
-import styled from '@emotion/styled';
 import { Anchor, Box, H3, Paragraph } from '@gilbarbara/components';
-import image from 'media/musicbot.jpg';
+import Image from 'next/image';
 
-import { theme } from 'modules/theme';
+import { useAppContext } from 'modules/context';
 
-const Wrapper = styled(Box)`
-  img {
-    max-width: 440px;
-    margin-right: ${theme.spacing.md};
-  }
+import { projectImageDimensions } from 'config';
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    img {
-      display: block;
-      margin-bottom: ${theme.spacing.md};
-      margin-right: 0;
-      max-width: 100%;
-    }
-  }
-`;
+import ImageLink from 'components/ImageLink';
 
 export default function Musicbot(): JSX.Element {
+  const {
+    state: { isMobile },
+  } = useAppContext();
+
+  const name = 'Musicbot';
   const url = 'https://musicbot.io/';
 
   return (
-    <Wrapper flexBox>
-      <Anchor external href={url}>
-        <img alt="Musicbot" src={image} />
-      </Anchor>
+    <Box direction={isMobile ? 'column' : 'row'} flexBox>
+      <ImageLink align="left" name={name} url={url}>
+        <Image
+          alt={name}
+          layout="responsive"
+          src="/media/musicbot.jpg"
+          {...projectImageDimensions}
+        />
+      </ImageLink>
       <Box>
         <H3>
           <Anchor external href={url}>
-            Musicbot
+            {name}
           </Anchor>
         </H3>
         <Paragraph bold>Create awesome playlists with Spotify</Paragraph>
@@ -41,6 +36,6 @@ export default function Musicbot(): JSX.Element {
           Select one or more tracks, change the parameters and generate a playlist.
         </Paragraph>
       </Box>
-    </Wrapper>
+    </Box>
   );
 }

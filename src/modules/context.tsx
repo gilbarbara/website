@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useMemo, useRef } from 'react';
 import { PartialDeep } from 'type-fest';
 
 import { appState } from 'config';
@@ -7,24 +7,39 @@ import { AppState } from 'types';
 
 import { useLocalStorageState } from './hooks';
 
-export const AppContext = createContext({
+interface Props {
+  children: ReactNode;
+  initialState?: PartialDeep<AppState>;
+}
+
+export const AppContext = createContext<{
+  setAppState: (
+    patch: PartialDeep<AppState> | ((previousState: AppState) => PartialDeep<AppState>),
+  ) => void;
+  state: AppState;
+}>({
   state: appState,
   setAppState: () => undefined,
 });
 AppContext.displayName = 'AppContext';
 
-export function AppProvider(props: any) {
-  const [state, setState] = useLocalStorageState('npm-stats', appState);
+export function AppProvider({ children, initialState }: Props) {
+  const [state, setState] = useLocalStorageState('dev', appState);
+  const isInitial = useRef(true);
+
+  useEffect(() => {
+    isInitial.current = false;
+  }, [state]);
 
   const value = useMemo(
     () => ({
-      state,
+      state: isInitial.current ? { ...state, ...initialState } : state,
       setAppState: setState,
     }),
-    [setState, state],
+    [initialState, setState, state],
   );
 
-  return <AppContext.Provider value={value} {...props} />;
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
 export function useAppContext(): {

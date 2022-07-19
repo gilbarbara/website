@@ -1,17 +1,17 @@
-import { useWindowSize } from 'react-use';
 import { Anchor, Box, Icon, Paragraph, Spacer } from '@gilbarbara/components';
 
 import { useAppContext } from 'modules/context';
+import { getFilterStyles } from 'modules/theme';
 
 export default function Footer(): JSX.Element {
-  const { state } = useAppContext();
-  const { width } = useWindowSize();
-  const isLargeScreen = width >= 1024;
+  const {
+    state: { isMobile, showMenu },
+  } = useAppContext();
 
   let links = (
     <Spacer
       data-component-name="FooterLinks"
-      direction={isLargeScreen ? 'vertical' : 'horizontal'}
+      direction={isMobile ? 'horizontal' : 'vertical'}
       gap="md"
     >
       <Anchor external href="https://github.com/gilbarbara" shade="lightest">
@@ -29,26 +29,23 @@ export default function Footer(): JSX.Element {
     </Spacer>
   );
 
-  links = isLargeScreen ? (
-    <Box bottom={32} data-component-name="Footer" left={32} padding="sm" position="fixed">
+  links = isMobile ? (
+    <Box align="center" display="flex" justify="center" mb="md">
       {links}
     </Box>
   ) : (
-    <Box align="center" display="flex" justify="center" mb="md">
+    <Box bottom={32} data-component-name="Footer" left={32} padding="sm" position="fixed">
       {links}
     </Box>
   );
 
   return (
-    <Box
-      data-component-name="Footer"
-      mt="xxl"
-      pb="xl"
-      style={{ filter: !isLargeScreen ? `blur(${state.showMenu ? '3px' : '0'})` : undefined }}
-    >
+    <Box data-component-name="Footer" mt="xxl" pb="xl" style={getFilterStyles(showMenu)}>
       {links}
 
-      <Paragraph align="center">Built by Gil Barbara</Paragraph>
+      <Paragraph align="center" size="mid">
+        Built by Gil Barbara
+      </Paragraph>
     </Box>
   );
 }

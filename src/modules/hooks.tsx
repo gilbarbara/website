@@ -9,7 +9,7 @@ export function useLocalStorageState<T extends AnyObject>(
   key: string,
   initialValue: T,
   { serializer = JSON.stringify, deserializer = JSON.parse } = {},
-): [state: T, setState: (state: PartialDeep<T>) => void] {
+): [state: T, setState: (state: PartialDeep<T> | ((previousState: T) => PartialDeep<T>)) => void] {
   const [value, setValue] = useLocalStorage(key, initialValue, {
     raw: false,
     serializer,
@@ -21,7 +21,7 @@ export function useLocalStorageState<T extends AnyObject>(
     setValue(state);
   }, [setValue, state]);
 
-  const setState = useCallback((patch: PartialDeep<T> | ((previousState: T) => T)) => {
+  const setState = useCallback((patch: PartialDeep<T> | ((previousState: T) => PartialDeep<T>)) => {
     set(previousState => {
       const nextState = patch instanceof Function ? patch(previousState) : patch;
 

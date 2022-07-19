@@ -1,5 +1,5 @@
-import { CSSProperties, useRef } from 'react';
-import { useInterval, useSetState } from 'react-use';
+import { CSSProperties, useEffect, useRef } from 'react';
+import { useSetState } from 'react-use';
 
 import { primaryColor } from 'modules/theme';
 
@@ -18,13 +18,14 @@ function getCurveSkew(value: number, amount = 0) {
   return [value + nextAmount, value - nextAmount];
 }
 
-function generateCircle(amount = 5) {
+function generateCircle(amount: number, randomInt?: number) {
   const leftCurvePoint = '57.307552';
   const rightCurvePoint = '198.692448';
-  const [bf, bb] = getCurveSkew(256, amount + getRandomInt());
-  const [rf, rb] = getCurveSkew(256, amount + getRandomInt());
-  const [tf, tb] = getCurveSkew(0, amount + getRandomInt());
-  const [lf, lb] = getCurveSkew(0, amount + getRandomInt());
+
+  const [bf, bb] = getCurveSkew(256, amount + (randomInt || getRandomInt()));
+  const [rf, rb] = getCurveSkew(256, amount + (randomInt || getRandomInt()));
+  const [tf, tb] = getCurveSkew(0, amount + (randomInt || getRandomInt()));
+  const [lf, lb] = getCurveSkew(0, amount + (randomInt || getRandomInt()));
 
   const quarters = {
     bottom: `M128,256`,
@@ -51,26 +52,35 @@ export default function Bubble({ size, style }: Props) {
     amount: 0,
     direction: 'forward',
   });
-  const circle = useRef(generateCircle(animation.amount));
+  const circle = useRef(generateCircle(animation.amount, 1));
+  const interval = useRef<number>();
   const space = 8;
 
-  useInterval(() => {
-    const { amount, direction } = animation;
-    const limit = 30;
+  useEffect(() => {
+    const { current } = interval;
 
-    if (amount) {
-      circle.current = generateCircle(amount);
-    }
+    interval.current = window.setInterval(() => {
+      const { amount, direction } = animation;
+      const limit = 30;
 
-    const nextAmount = amount + (direction === 'forward' ? 1 : -1);
-    let nextDirection = amount > limit ? 'reverse' : direction;
+      if (amount) {
+        circle.current = generateCircle(amount);
+      }
 
-    if (amount < -limit) {
-      nextDirection = 'forward';
-    }
+      const nextAmount = amount + (direction === 'forward' ? 1 : -1);
+      let nextDirection = amount > limit ? 'reverse' : direction;
 
-    setAnimation({ amount: nextAmount, direction: nextDirection });
-  }, 50);
+      if (amount < -limit) {
+        nextDirection = 'forward';
+      }
+
+      setAnimation({ amount: nextAmount, direction: nextDirection });
+    }, 50);
+
+    return () => {
+      clearInterval(current);
+    };
+  }, [animation, setAnimation]);
 
   return (
     <svg

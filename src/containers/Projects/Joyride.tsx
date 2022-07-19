@@ -1,40 +1,26 @@
-import styled from '@emotion/styled';
 import { Anchor, Box, H3, Paragraph } from '@gilbarbara/components';
-import image from 'media/react-joyride.jpg';
+import Image from 'next/image';
 
-import { theme } from 'modules/theme';
+import { useAppContext } from 'modules/context';
 
-const Wrapper = styled(Box)`
-  img {
-    max-width: 440px;
-    margin-left: ${theme.spacing.md};
-  }
+import { projectImageDimensions } from 'config';
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    [data-component-name='Box'] {
-      order: 2;
-    }
-
-    img {
-      display: block;
-      margin-bottom: ${theme.spacing.md};
-      margin-left: 0;
-      max-width: 100%;
-    }
-  }
-`;
+import ImageLink from 'components/ImageLink';
 
 export default function Joyride(): JSX.Element {
+  const {
+    state: { isMobile },
+  } = useAppContext();
+
   const url = 'https://react-joyride.com/';
+  const name = 'React Joyride';
 
   return (
-    <Wrapper flexBox>
-      <Box>
+    <Box direction={isMobile ? 'column' : 'row'} flexBox>
+      <Box data-component-name="Content" order={isMobile ? 2 : 0}>
         <H3>
           <Anchor external href={url}>
-            React Joyride
+            {name}
           </Anchor>
         </H3>
         <Paragraph bold>Create awesome tours for your app!</Paragraph>
@@ -42,9 +28,14 @@ export default function Joyride(): JSX.Element {
           Showcase your app to new users or explain functionality of new features.
         </Paragraph>
       </Box>
-      <Anchor external href={url}>
-        <img alt="React Joyride" src={image} />
-      </Anchor>
-    </Wrapper>
+      <ImageLink align="left" name={name} url={url}>
+        <Image
+          alt={name}
+          layout="responsive"
+          src="/media/react-joyride.jpg"
+          {...projectImageDimensions}
+        />
+      </ImageLink>
+    </Box>
   );
 }

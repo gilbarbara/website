@@ -1,48 +1,39 @@
-import styled from '@emotion/styled';
 import { Anchor, Box, H3, Paragraph } from '@gilbarbara/components';
-import image from 'media/colormeup.jpg';
+import Image from 'next/image';
 
-import { theme } from 'modules/theme';
+import { useAppContext } from 'modules/context';
 
-const Wrapper = styled(Box)`
-  img {
-    max-width: 440px;
-    margin-left: ${theme.spacing.md};
-  }
+import { projectImageDimensions } from 'config';
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    [data-component-name='Box'] {
-      order: 2;
-    }
-
-    img {
-      display: block;
-      margin-bottom: ${theme.spacing.md};
-      margin-left: 0;
-      max-width: 100%;
-    }
-  }
-`;
+import ImageLink from 'components/ImageLink';
 
 export default function Colormeup(): JSX.Element {
+  const {
+    state: { isMobile },
+  } = useAppContext();
+
+  const name = 'ColorMeUp';
   const url = 'https://colormeup.co/';
 
   return (
-    <Wrapper flexBox>
-      <Box>
+    <Box direction={isMobile ? 'column' : 'row'} flexBox>
+      <Box data-component-name="Content" order={isMobile ? 2 : 0}>
         <H3>
           <Anchor external href={url}>
-            Colormeup
+            {name}
           </Anchor>
         </H3>
         <Paragraph bold>Inspect colors and generate palettes</Paragraph>
         <Paragraph mt="xs">Know your colors!</Paragraph>
       </Box>
-      <Anchor external href={url}>
-        <img alt="Colormeup" src={image} />
-      </Anchor>
-    </Wrapper>
+      <ImageLink align="right" name={name} url={url}>
+        <Image
+          alt={name}
+          layout="responsive"
+          src="/media/colormeup.jpg"
+          {...projectImageDimensions}
+        />
+      </ImageLink>
+    </Box>
   );
 }

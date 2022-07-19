@@ -1,21 +1,23 @@
 import { ComponentProps, ReactNode } from 'react';
-import { useWindowSize } from 'react-use';
 import { Main } from '@gilbarbara/components';
+
+import { useAppContext } from 'modules/context';
 
 interface Props extends ComponentProps<typeof Main> {
   children: ReactNode;
 }
 
 export default function Section(props: Props): JSX.Element {
-  const { width } = useWindowSize();
-  const isDesktop = width >= 1024;
+  const {
+    state: { isMobile },
+  } = useAppContext();
 
   return (
     <Main
       as="section"
       centered
       minHeight="70vh"
-      px={isDesktop ? 'jumbo' : 'xl'}
+      px={isMobile ? 'xl' : 'jumbo'}
       py="jumbo"
       {...props}
     />

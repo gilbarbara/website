@@ -1,39 +1,34 @@
-import styled from '@emotion/styled';
 import { Anchor, Box, H3, Paragraph } from '@gilbarbara/components';
-import image from 'media/svgporn.jpg';
+import Image from 'next/image';
 
-import { theme } from 'modules/theme';
+import { useAppContext } from 'modules/context';
 
-const Wrapper = styled(Box)`
-  img {
-    max-width: 440px;
-    margin-right: ${theme.spacing.md};
-  }
+import { projectImageDimensions } from 'config';
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    img {
-      display: block;
-      margin-bottom: ${theme.spacing.md};
-      margin-right: 0;
-      max-width: 100%;
-    }
-  }
-`;
+import ImageLink from 'components/ImageLink';
 
 export default function SVGPorn(): JSX.Element {
+  const {
+    state: { isMobile },
+  } = useAppContext();
+
+  const name = 'SVG Porn';
   const url = 'https://svgporn.com';
 
   return (
-    <Wrapper flexBox>
-      <Anchor external href={url}>
-        <img alt="SVG Porn" src={image} />
-      </Anchor>
+    <Box direction={isMobile ? 'column' : 'row'} flexBox>
+      <ImageLink align="left" name={name} url={url}>
+        <Image
+          alt={name}
+          layout="responsive"
+          src="/media/musicbot.jpg"
+          {...projectImageDimensions}
+        />
+      </ImageLink>
       <Box>
         <H3>
           <Anchor external href={url}>
-            SVG Porn
+            {name}
           </Anchor>
         </H3>
         <Paragraph bold>Vector logos for the tech industry</Paragraph>
@@ -44,6 +39,6 @@ export default function SVGPorn(): JSX.Element {
           </Anchor>
         </Paragraph>
       </Box>
-    </Wrapper>
+    </Box>
   );
 }

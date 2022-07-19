@@ -1,18 +1,21 @@
-import { useWindowSize } from 'react-use';
 import { Anchor, Box, Paragraph } from '@gilbarbara/components';
+import Image from 'next/image';
+
+import { useAppContext } from 'modules/context';
 
 import Block from 'components/Block';
 import Section from 'components/Section';
 
 export default function About(): JSX.Element {
-  const { width } = useWindowSize();
-  const isLarge = width >= 768;
+  const {
+    state: { isMobile },
+  } = useAppContext();
 
   return (
     <Section data-component-name="about">
       <Block title="About Me">
-        <Box align="start" direction={isLarge ? 'row' : 'column'} display="flex">
-          <Box flex mb={isLarge ? undefined : 'xl'} mr={isLarge ? 'xl' : undefined}>
+        <Box align="start" direction={isMobile ? 'column' : 'row'} display="flex">
+          <Box flex mb={isMobile ? 'xl' : undefined} mr={!isMobile ? 'xl' : undefined}>
             <Paragraph size="large">
               Hello! My name is Gil Barbara, and I've been into coding since I was a little kid,
               writing my first script in Basic when I was seven years old on a TRS-80 Color
@@ -44,12 +47,13 @@ export default function About(): JSX.Element {
             </Paragraph>
           </Box>
 
-          <Box mx="auto">
-            <img
+          <Box flexBox mx="auto">
+            <Image
               alt="Gil Barbara"
-              src="https://gilbarbara.dev/files/profile-1.jpg"
+              height={192}
+              src="/media/profile-1.jpg"
               style={{ borderRadius: '50%' }}
-              width="192"
+              width={192}
             />
           </Box>
         </Box>

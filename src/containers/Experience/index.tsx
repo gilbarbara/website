@@ -1,5 +1,6 @@
-import { useWindowSize } from 'react-use';
 import { Tab, Tabs } from '@gilbarbara/components';
+
+import { useAppContext } from 'modules/context';
 
 import Block from 'components/Block';
 import Section from 'components/Section';
@@ -10,13 +11,18 @@ import Rraurl from 'containers/Experience/Rraurl';
 import Verios from 'containers/Experience/Verios';
 
 export default function Experience(): JSX.Element {
-  const { width } = useWindowSize();
-  const isLarge = width >= 768;
+  const {
+    state: { isMobile },
+  } = useAppContext();
 
   return (
     <Section data-component-name="experience">
       <Block title="Experience">
-        <Tabs direction={isLarge ? 'horizontal' : 'vertical'} minHeight={280}>
+        <Tabs
+          key={isMobile.toString()}
+          direction={isMobile ? 'vertical' : 'horizontal'}
+          minHeight={280}
+        >
           <Tab id="intera" title="Intera">
             <Intera />
           </Tab>

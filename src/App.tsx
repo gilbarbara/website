@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-use';
+import { useLocation, useWindowSize } from 'react-use';
 import { Box } from '@gilbarbara/components';
 
 import { useAppContext } from 'modules/context';
+import { getFilterStyles } from 'modules/theme';
 
 import Footer from 'components/Footer';
 import Header from 'components/Header';
@@ -13,8 +14,13 @@ import Hero from 'containers/Hero';
 import Projects from 'containers/Projects';
 
 function App() {
-  const { state } = useAppContext();
+  const { height, width } = useWindowSize();
+  const { setAppState, state } = useAppContext();
   const { hash } = useLocation();
+
+  useEffect(() => {
+    setAppState({ isMobile: height > width });
+  }, [height, setAppState, width]);
 
   useEffect(() => {
     if (!hash) {
@@ -31,7 +37,7 @@ function App() {
   return (
     <>
       <Header />
-      <Box style={{ filter: `blur(${state.showMenu ? '3px' : '0'})` }}>
+      <Box data-component-name="Main" style={getFilterStyles(state.showMenu)}>
         <Hero />
         <About />
         <Experience />

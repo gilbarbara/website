@@ -8,3 +8,10 @@ export const theme = mergeTheme({
   darkMode: true,
   colors: { primary: primaryColor, secondary: secondaryColor },
 });
+
+export function getFilterStyles(isActive: boolean) {
+  return {
+    filter: `blur(${isActive ? '3px' : '0'})`,
+    transition: 'filter 0.2s',
+  };
+}

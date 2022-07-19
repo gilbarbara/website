@@ -4,15 +4,33 @@
     "baseUrl": ".",
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "lib": ["dom", "dom.iterable", "esnext", "webworker"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "webworker"
+    ],
     "module": "ESNext",
     "noEmit": true,
     "paths": {
-      "*": ["src/*"],
-      "public/*": ["public/*"],
-      "test/*": ["test/*"]
-    }
+      "*": [
+        "src/*"
+      ],
+      "public/*": [
+        "public/*"
+      ],
+      "test/*": [
+        "test/*"
+      ]
+    },
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
-  "include": ["src/**/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
