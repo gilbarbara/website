@@ -1,7 +1,7 @@
 import { Anchor, Box, Icon, Paragraph, Spacer } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
-import { getFilterStyles } from 'modules/theme';
+import { useAppContext } from '~/modules/context';
+import { getFilterStyles } from '~/modules/theme';
 
 export default function Footer(): JSX.Element {
   const {

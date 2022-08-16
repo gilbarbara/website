@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useRef } from 'react';
 import { useSetState } from 'react-use';
 
-import { primaryColor } from 'modules/theme';
+import { primaryColor } from '~/modules/theme';
 
 interface Props {
   size: number;

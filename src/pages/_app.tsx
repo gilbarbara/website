@@ -3,7 +3,7 @@ import { ThemeProvider } from '@emotion/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { PageProps } from 'types';
+import { PageProps } from '~/types';
 
 import GlobalStyles from '../components/GlobalStyles';
 import { AppProvider } from '../modules/context';

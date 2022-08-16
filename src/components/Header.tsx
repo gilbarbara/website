@@ -1,10 +1,10 @@
 import { MouseEvent } from 'react';
 import { Anchor, Box, BoxCenter, Button, ButtonBase, Icon, Spacer } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
-import { darkColor } from 'modules/theme';
+import { useAppContext } from '~/modules/context';
+import { darkColor } from '~/modules/theme';
 
-import Logo from 'components/Logo';
+import Logo from '~/components/Logo';
 
 export default function Header(): JSX.Element {
   const {

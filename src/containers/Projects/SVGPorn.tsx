@@ -1,11 +1,11 @@
 import { Anchor, Box, H3, Paragraph } from '@gilbarbara/components';
 import Image from 'next/image';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
-import { projectImageDimensions } from 'config';
+import { projectImageDimensions } from '~/config';
 
-import ImageLink from 'components/ImageLink';
+import ImageLink from '~/components/ImageLink';
 
 export default function SVGPorn(): JSX.Element {
   const {

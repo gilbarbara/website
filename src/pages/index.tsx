@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next/types';
 
-import App from '../App';
+import App from '~/App';
 
 export default function Page(): JSX.Element {
   return <App />;

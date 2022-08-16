@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { useAppContext } from 'modules/context';
-import { theme } from 'modules/theme';
+import { useAppContext } from '~/modules/context';
+import { theme } from '~/modules/theme';
 
 interface Props {
   align: 'left' | 'right';

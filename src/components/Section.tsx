@@ -1,7 +1,7 @@
 import { ComponentProps, ReactNode } from 'react';
 import { Main } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
 interface Props extends ComponentProps<typeof Main> {
   children: ReactNode;

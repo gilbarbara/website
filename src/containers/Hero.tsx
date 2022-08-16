@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from 'react-use';
 import { Box, H1, H2, Jumbo } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
-import Bubble from 'components/Bubble';
-import Section from 'components/Section';
+import Bubble from '~/components/Bubble';
+import Section from '~/components/Section';
 
 export default function Hero(): JSX.Element {
   const {

@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { useLocation, useWindowSize } from 'react-use';
 import { Box } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
-import { getFilterStyles } from 'modules/theme';
+import { useAppContext } from '~/modules/context';
+import { getFilterStyles } from '~/modules/theme';
 
-import Footer from 'components/Footer';
-import Header from 'components/Header';
-import About from 'containers/About';
-import Contact from 'containers/Contact';
-import Experience from 'containers/Experience';
-import Hero from 'containers/Hero';
-import Projects from 'containers/Projects';
+import Footer from '~/components/Footer';
+import Header from '~/components/Header';
+import About from '~/containers/About';
+import Contact from '~/containers/Contact';
+import Experience from '~/containers/Experience';
+import Hero from '~/containers/Hero';
+import Projects from '~/containers/Projects';
 
 function App() {
   const { height, width } = useWindowSize();

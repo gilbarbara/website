@@ -1,14 +1,14 @@
 import { Tab, Tabs } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
-import Block from 'components/Block';
-import Section from 'components/Section';
-import Amaro from 'containers/Experience/Amaro';
-import Intera from 'containers/Experience/Intera';
-import Kollectiv from 'containers/Experience/Kollectiv';
-import Rraurl from 'containers/Experience/Rraurl';
-import Verios from 'containers/Experience/Verios';
+import Block from '~/components/Block';
+import Section from '~/components/Section';
+import Amaro from '~/containers/Experience/Amaro';
+import Intera from '~/containers/Experience/Intera';
+import Kollectiv from '~/containers/Experience/Kollectiv';
+import Rraurl from '~/containers/Experience/Rraurl';
+import Verios from '~/containers/Experience/Verios';
 
 export default function Experience(): JSX.Element {
   const {

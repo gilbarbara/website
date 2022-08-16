@@ -1,6 +1,6 @@
 import { css, Global } from '@emotion/react';
 
-import { darkColor, theme } from 'modules/theme';
+import { darkColor, theme } from '~/modules/theme';
 
 export default function GlobalStyles() {
   return (

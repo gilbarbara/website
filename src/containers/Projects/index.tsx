@@ -1,13 +1,13 @@
 import { Spacer } from '@gilbarbara/components';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
-import Block from 'components/Block';
-import Section from 'components/Section';
-import Colormeup from 'containers/Projects/Colormeup';
-import Joyride from 'containers/Projects/Joyride';
-import Musicbot from 'containers/Projects/Musicbot';
-import SVGPorn from 'containers/Projects/SVGPorn';
+import Block from '~/components/Block';
+import Section from '~/components/Section';
+import Colormeup from '~/containers/Projects/Colormeup';
+import Joyride from '~/containers/Projects/Joyride';
+import Musicbot from '~/containers/Projects/Musicbot';
+import SVGPorn from '~/containers/Projects/SVGPorn';
 
 export default function Projects(): JSX.Element {
   const {

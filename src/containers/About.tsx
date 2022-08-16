@@ -1,10 +1,10 @@
 import { Anchor, Box, Paragraph } from '@gilbarbara/components';
 import Image from 'next/image';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
-import Block from 'components/Block';
-import Section from 'components/Section';
+import Block from '~/components/Block';
+import Section from '~/components/Section';
 
 export default function About(): JSX.Element {
   const {

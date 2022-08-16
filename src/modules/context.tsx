@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useContext, useEffect, useMemo, useRef } from 'react';
 import { PartialDeep } from 'type-fest';
 
-import { appState } from 'config';
+import { appState } from '~/config';
 
-import { AppState } from 'types';
+import { AppState } from '~/types';
 
 import { useLocalStorageState } from './hooks';
 

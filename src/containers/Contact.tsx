@@ -13,10 +13,10 @@ import {
 import { ASYNC_STATUS, request } from '@gilbarbara/helpers';
 import { AsyncStatus, StringOrNull } from '@gilbarbara/types';
 
-import { useAppContext } from 'modules/context';
+import { useAppContext } from '~/modules/context';
 
-import Block from 'components/Block';
-import Section from 'components/Section';
+import Block from '~/components/Block';
+import Section from '~/components/Section';
 
 interface Form extends HTMLFormElement {
   elements: HTMLFormControlsCollection & {

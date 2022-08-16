@@ -1,8 +1,8 @@
 import React from 'react';
 import { Anchor, Button, Main, NonIdealState } from '@gilbarbara/components';
 
-import Footer from 'components/Footer';
-import Logo from 'components/Logo';
+import Footer from '~/components/Footer';
+import Logo from '~/components/Logo';
 
 export default function NotFound(): JSX.Element {
   return (
