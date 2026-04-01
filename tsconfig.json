@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "downlevelIteration": true,
     "esModuleInterop": true,
+    "jsx": "preserve",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,24 +14,12 @@
     "module": "ESNext",
     "noEmit": true,
     "paths": {
-      "~/*": [
-        "src/*"
-      ],
-      "public/*": [
-        "public/*"
-      ],
-      "test/*": [
-        "test/*"
-      ]
+      "~/*": ["app/*"]
     },
+    "plugins": [{ "name": "next" }],
     "incremental": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
+    "isolatedModules": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["app/**/*", "src/**/*"],
+  "exclude": ["node_modules"]
 }

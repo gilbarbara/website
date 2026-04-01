@@ -1,9 +1,5 @@
 # gilbarbara.dev
 
-My personal website built with React and next.js using [@gilbarbara/components](https://github.com/gilbarbara/components) for styling.
+My personal website built with next.js 16.x with Tailwind CSS, and HeroUI v2.
 
 Available at https://gilbarbara.dev
-
----
-
-Inspired by Brittany Chiang's [website](https://brittanychiang.com/) ❤️
